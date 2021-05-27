@@ -46,20 +46,20 @@ public class NPC : MonoBehaviour
     }
 
 
-    public void Buy()
-    {
-        if (player.coin > -priceWeapon[indexWeapon])
-        {
-            player.coin -= priceWeapon[indexWeapon];
-            player.texrCoin.text = "金幣" + player.coin;
-            for (int i = 0 ; i < objWeapon.Length; i++)
-            {
-                objWeapon[i].SetActive(false);
-            }
+    //public void Buy()
+    //{
+        //if (player.coin > -priceWeapon[indexWeapon])
+        //{
+            //player.coin -= priceWeapon[indexWeapon];
+            //player.texrCoin.text = "金幣" + player.coin;
+            //for (int i = 0 ; i < objWeapon.Length; i++)
+            //{
+                //objWeapon[i].SetActive(false);
+            //}
             
-            objWeapon[indexWeapon].SetActive(true);
-        }
-    }
+            //objWeapon[indexWeapon].SetActive(true);
+        //}
+    //}
     
         
     }

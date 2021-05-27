@@ -35,16 +35,16 @@ public class player : MonoBehaviour
     public Hp hpmanager;
     [Header("攻擊力")]
     public float attack = 20;
-    [Header("等級文字")]
-    public Text expText;
-    [Header("經驗值吧條")]
-    public Image expime;
-    [Header("經驗值資料")]
-    public expdata expData;
-    [Header("金幣音效")]
-    public AudioClip soundEat;
-    [Header("金幣文字")]
-    public Text texrCoin;
+    //[Header("等級文字")]
+    //public Text expText;
+    //[Header("經驗值吧條")]
+    //public Image expime;
+    //[Header("經驗值資料")]
+    //public expdata expData;
+    //[Header("金幣音效")]
+    //public AudioClip soundEat;
+    //[Header("金幣文字")]
+    //public Text texrCoin;
 
     public int coin;
     public int attackWeapon;
@@ -108,43 +108,43 @@ public class player : MonoBehaviour
         SceneManager.LoadScene("遊戲場景");
     }
 
-    public void Exp(float getexp)
-    {
-        expNeed = expData.exp[lv - 1];
+    //public void Exp(float getexp)
+    //{
+       //expNeed = expData.exp[lv - 1];
         
-        exp += getexp;
-        print("經驗值" + exp);
-        expime.fillAmount = exp / expNeed;
+        //exp += getexp;
+        //print("經驗值" + exp);
+        //expime.fillAmount = exp / expNeed;
+    
+        //while (exp >= expNeed)
+        //{
+            //lv++;
+           //expText.text = "LV" + lv;
+           //exp -= expNeed;
+            //expime.fillAmount = exp / expNeed;
+           //expNeed = expData.exp[lv - 1];
+            //Levelup();
+        //}
 
-        while (exp >= expNeed)
-        {
-            lv++;
-            expText.text = "LV" + lv;
-            exp -= expNeed;
-            expime.fillAmount = exp / expNeed;
-            expNeed = expData.exp[lv - 1];
-            Levelup();
-        }
+    //}
 
-    }
-
-    private void Levelup()
-    {
-        attack = 20 + (lv - 1) * 10;
-        hpmax = 200 + (lv - 1) * 50;
-    }
+    //private void Levelup()
+    //{
+        //attack = 20 + (lv - 1) * 10;
+        //hpmax = 200 + (lv - 1) * 50;
+    //}
 
     private void Start()
     {
-        coin = 10;
-        texrCoin.text = "金幣" + coin;
+        //coin = 10;
+        //texrCoin.text = "金幣" + coin;
 
         hpmax = Blood;
 
-        for(int i=0; i < 14; i++)
-        {
-            expData.exp[i] = (i + 1) * 100;
-        }
+        //for(int i=0; i < 14; i++)
+        //{
+        //    expData.exp[i] = (i + 1) * 100;
+        //}
     }
     private void Update()
     {
@@ -153,16 +153,16 @@ public class player : MonoBehaviour
     
 
     //觸發事件-進入:兩個物件其中1個要勾選is Trigger
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "金條")
-        {
-            coin++;
-            aud.PlayOneShot(soundEat);
-            Destroy(collision.gameObject);
-            texrCoin.text = "金幣:" + coin;
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+        //if (collision.tag == "金條")
+        //{
+            //coin++;
+            //aud.PlayOneShot(soundEat);
+            //Destroy(collision.gameObject);
+            //texrCoin.text = "金幣:" + coin;
             //print(collision.gameObject);
-        }
-    }
+        //}
+    //}
 
 }
