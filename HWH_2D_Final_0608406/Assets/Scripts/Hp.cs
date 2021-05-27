@@ -30,7 +30,7 @@ public class Hp : MonoBehaviour
 
         while ( y < 400)
         {
-            y += 20;
+            y += 1;
             rect.anchoredPosition = new Vector2(0, y);
             yield return new WaitForSeconds(0.02F);
 

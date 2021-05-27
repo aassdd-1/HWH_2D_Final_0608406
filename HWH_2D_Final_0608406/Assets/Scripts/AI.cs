@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 #region 宣告
 public class AI : MonoBehaviour
 {
-    [Header("追蹤範圍"),Range(0,500)]
+    [Header("追蹤範圍"), Range(0, 500)]
     public float rangetrack = 2;
     [Header("攻擊範圍"), Range(0, 50)]
     public float rangeAttack = 0.5f;
@@ -23,27 +24,29 @@ public class AI : MonoBehaviour
     private float hpmax;
     [Header("血條系統")]
     public Hp hpmanager;
-  
+
     private bool isDead = false;
     [Header("經驗值")]
     public float exp = 30;
     private Transform player;
     private player _player;
     private float timer;
+    [Header("傷害數值")]
+    public RectTransform rectDamage;
     #endregion
-#region 方法
+    #region 方法
 
 
     /// <summary>
     /// 追蹤玩家
     /// </summary>
-    
+
 
 
     private void Track()
     {
         if (isDead) return;
-        
+
         //距離 等於 三維向量 的 距離(A點,B點)
         float dis = Vector3.Distance(transform.position, player.position);
         //如果 距離 小於等於 追蹤範圍 才開始追蹤
@@ -53,9 +56,9 @@ public class AI : MonoBehaviour
             Attack();
 
         }
-        else if (dis<=rangetrack)
+        else if (dis <= rangetrack)
         {
-            
+
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
 
@@ -71,7 +74,7 @@ public class AI : MonoBehaviour
         {
             timer = 0;
             psAttack.Play();
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, rangeAttack,1 << 9);
+            Collider2D hit = Physics2D.OverlapCircle(transform.position, rangeAttack, 1 << 9);
             hit.GetComponent<player>().hit(attack);
         }
 
@@ -123,6 +126,25 @@ public class AI : MonoBehaviour
     {
         Track();
     }
-    #endregion
+    public IEnumerator ShowDamagr(float damage)
+    {
+        RectTransform rect = Instantiate(rectDamage, transform);
+        rect.anchoredPosition = new Vector2(223, 88);
+        rect.GetComponent<Text>().text = damage.ToString();
 
+        float y = rect.anchoredPosition.y;
+
+        while (y < 400)
+        {
+            y += 20;
+            rect.anchoredPosition = new Vector2(0, y);
+            yield return new WaitForSeconds(0.02F);
+
+
+        }
+        Destroy(rect.gameObject, 0.5f);
+        #endregion
+
+
+    }
 }
